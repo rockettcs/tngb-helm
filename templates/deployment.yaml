@@ -45,18 +45,7 @@ spec:
           volumeMounts:
             - mountPath: /workspace/output/{{ .Values.application.name }}
               name: config-volume
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
           env:
-            - name: http_proxy
-              value: 'https://157.227.4.5:8080'
-            - name: https_proxy
-              value: 'https://157.227.4.5:8080'
-            - name: no_proxy
-              value: '.apps.tclnprdservices.tatacapital.com,.cluster.local,.svc,.svc.cluster.local,.tatacapital.com,.tclnprdservices.tatacapital.com,
-              10.0.0.0/16,10.128.0.0/14,127.0.0.1,172.16.19.0/23,172.35.0.0/16,192.168.16.41,api-int.tclnprdservices.tatacapital.com,api.tclnprdservices.tatacapital.com,localhost'
             - name: KUBERNETES_NAMESPACE
               valueFrom:
                 fieldRef:
