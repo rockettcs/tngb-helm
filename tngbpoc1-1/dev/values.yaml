@@ -1,6 +1,6 @@
 env: dev
 application:
-  name: dmsbackendadapter
+  name: tngbpoc1-1
   javaoptions: -Xms1024m -Xmx6000m
 replicaCount: 1
 image:
