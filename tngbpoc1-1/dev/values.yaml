@@ -9,7 +9,7 @@ image:
   tag: "v7"
 service:
   type: ClusterIP
-  port: 9902
+  port: 5000
 route:
   enabled: true
   host: tngb-demo-project.apps.ocp4.imss.work
