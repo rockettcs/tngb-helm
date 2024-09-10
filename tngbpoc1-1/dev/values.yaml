@@ -1,4 +1,7 @@
 env: dev
+application:
+  name: dmsbackendadapter
+  javaoptions: -Xms1024m -Xmx6000m
 replicaCount: 1
 image:
   repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngbpoc1-1
@@ -6,7 +9,7 @@ image:
   tag: "v7"
 service:
   type: ClusterIP
-  port: 5000
+  port: 9902
 route:
   enabled: true
   host: tngb-demo-project.apps.ocp4.imss.work
@@ -18,38 +21,19 @@ autoscaling:
   targetCPUUtilizationPercentage: 90
   targetMemoryUtilizationPercentage: 80
 labels:
-  component: tngb-demo-app
-  deploymentconfig: tngb-demo-app
+  component: dmsbackendadapter
+  deploymentconfig: dmsbackendadapter
   group: tatacapital
-  project: tngb-demo-app
+  project: dmsbackendadapter
   provider: s2i
   version: 1.0.0
 resources:
   limits:
-    cpu: 500m
-    memory: 500Mi
+    cpu: 1000m
+    memory: 1024Mi
   requests:
-    cpu: 10m
+    cpu: 100m
     memory: 256Mi
-readinessProbe:
-  httpGet:
-    scheme: HTTP
-    path: /rest/health
-    port: 5000
-  periodSeconds: 30
-  initialDelaySeconds: 30
-  successThreshold: 1
-  failureThreshold: 3
-livenessProbe:
-  httpGet:
-    scheme: HTTP
-    path: /rest/health
-    port: 5000
-  timeoutSeconds: 1
-  periodSeconds: 30
-  initialDelaySeconds: 30
-  successThreshold: 1
-  failureThreshold: 3
 nodeSelector: {}
 tolerations: []
 affinity: {}
