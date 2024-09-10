@@ -1,0 +1,52 @@
+{{ if .Values.route.apigatewayroute }} 
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ .Values.application.name }}-staging
+  namespace: 3scale
+  labels: 
+    {{- include "app.labels" . | nindent 4 }}
+  annotations:
+    'haproxy.router.openshift.io/balance': roundrobin
+    'haproxy.router.openshift.io/disable_cookies': 'true'
+    'haproxy.router.openshift.io/timeout': {{ .Values.route.timeout }}
+spec:
+  host: {{ .Values.route.staginghost }}
+  to:
+    kind: Service
+    name: apicast-staging
+    weight: 100
+  port:
+    targetPort: gateway
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+{{- end }}
+
+---
+{{ if .Values.route.apigatewayroute }} 
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ .Values.application.name }}-production
+  namespace: 3scale
+  labels: 
+    {{- include "app.labels" . | nindent 4 }}
+  annotations:
+    'haproxy.router.openshift.io/balance': roundrobin
+    'haproxy.router.openshift.io/disable_cookies': 'true'
+    'haproxy.router.openshift.io/timeout': {{ .Values.route.timeout }}
+spec:
+  host: {{ .Values.route.productionhost }}
+  to:
+    kind: Service
+    name: apicast-production
+    weight: 100
+  port:
+    targetPort: gateway
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+{{- end }}
