@@ -75,10 +75,10 @@ spec:
             {{- if .Values.certificates.enabled }}
             - mountPath: /workspace/output/cert1
               name: cert1-volume
-              subPath: certificate.crt
+              subPath: sourceB.cer
             - mountPath: /workspace/output/cert2
               name: cert2-volume
-              subPath: certificate.pfx
+              subPath: sourceB.pfx
             {{- end }}
 
           env:
