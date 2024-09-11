@@ -3,13 +3,6 @@ application:
   name: tngbpoc1-1
   javaoptions: -Xms1024m -Xmx6000m
 replicaCount: 1
-certificates:
-  enabled: true  # Set to true to enable certificates for this app
-  cert1:
-    name: cer-certificate-config
-  cert2:
-    name: cer-certificate-pfx
-
 usePVC: false
 pvc:
   name: tngbpoc-pvc
