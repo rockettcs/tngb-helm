@@ -67,7 +67,7 @@ spec:
 
             # Conditional PVC VolumeMount
             {{- if .Values.usePVC }}
-            - mountPath: /data
+            - mountPath: /home
               name: app-pvc-volume
             {{- end }}
 
