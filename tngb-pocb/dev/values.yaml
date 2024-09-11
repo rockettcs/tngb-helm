@@ -9,6 +9,11 @@ certificates:
     name: cer-certificate-config
   cert2:
     name: cer-certificate-pfx
+path:
+  mount: /workspace/output/sourceB.cer
+  subpath: sourceB.cer
+  mounte: /workspace/output/sourceB.pfx
+  subpathe: sourceB.pfx
 usePVC: true
 pvc:
   name: tngb-poc3-b-pvc
