@@ -1,0 +1,48 @@
+env: dev
+application:
+  name: tngb-poc3-b
+  javaoptions: -Xms1024m -Xmx6000m
+replicaCount: 1
+certificates:
+  enabled: true  # Set to true to enable certificates for this app
+  cert1:
+    name: cer-certificate-config
+  cert2:
+    name: cer-certificate-pfx
+usePVC: false
+pvc:
+  name: tngbpoc-pvc
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngb-poc3-b
+  pullPolicy: Always
+  tag: "v1"
+service:
+  type: ClusterIP
+  port: 5000
+route:
+  enabled: true
+  host: tngb-poc3-b-demo-project.apps.ocp4.imss.work
+  path: /
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 80
+labels:
+  component: tngb-poc3-b
+  deploymentconfig: tngb-poc3-b
+  group: tatacapital
+  project: tngb-poc3-b
+  provider: s2i
+  version: 1.0.0
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+nodeSelector: {}
+tolerations: []
+affinity: {}
