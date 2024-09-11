@@ -54,7 +54,7 @@ spec:
         {{- if .Values.cert.enabled }}
         - name: cert3-volume
           configMap:
-            name: {{ .Values.certificates.cert3.name }}
+            name: {{ .Values.cert.cert3.name }}
         {{- end }}
 
       containers:
