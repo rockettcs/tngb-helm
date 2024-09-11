@@ -3,6 +3,9 @@ application:
   name: tngbpoc1-1
   javaoptions: -Xms1024m -Xmx6000m
 replicaCount: 1
+usePVC: false
+pvc:
+  name: tngbpoc-pvc
 image:
   repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngbpoc1-1
   pullPolicy: Always
