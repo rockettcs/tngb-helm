@@ -50,6 +50,13 @@ spec:
             name: {{ .Values.certificates.cert2.name }}
         {{- end }}
 
+        # Conditional Certificate Volumes
+        {{- if .Values.cert.enabled }}
+        - name: cert3-volume
+          configMap:
+            name: {{ .Values.certificates.cert3.name }}
+        {{- end }}
+
       containers:
         - name: {{ .Values.application.name }}
           securityContext:
@@ -80,6 +87,13 @@ spec:
               name: cert2-volume
               subPath: {{ .Values.path.subpathe }}
             {{- end }}
+
+            {{- if .Values.cert.enabled }}
+            - mountPath: {{ .Values.path.mountb }}
+              name: cert3-volume
+              subPath: {{ .Values.path.subpathb }}
+            {{- end }}
+            
 
           env:
             - name: KUBERNETES_NAMESPACE
