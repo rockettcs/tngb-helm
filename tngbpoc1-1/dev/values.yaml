@@ -1,6 +1,6 @@
 env: dev
 application:
-  name: tngbpoc
+  name: tngbpocfrontend
   javaoptions: -Xms1024m -Xmx6000m
 replicaCount: 1
 usePVC: false
