@@ -11,6 +11,13 @@ certificates:
     name: cer-certificate-poca-pfx
   cert3:
     name: cer-certificate-config
+path:
+  mount: /workspace/output/sourceA.cer
+  subpath: sourceA.cer
+  mounte: /workspace/output/sourceA.pfx
+  subpathe: sourceA.pfx
+  mountb: /workspace/output/sourceB.cer
+  subpathb: sourceB.cer
 usePVC: true
 pvc:
   name: tngb-poc3-b-pvc
