@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.pvc.name }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
