@@ -9,6 +9,8 @@ certificates:
     name: cer-certificate-config
   cert2:
     name: cer-certificate-pfx
+cert:
+  enabled: false
 path:
   mount: /workspace/output/sourceB.cer
   subpath: sourceB.cer
