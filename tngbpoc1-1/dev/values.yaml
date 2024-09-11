@@ -9,7 +9,7 @@ pvc:
 image:
   repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngbpoc1-1
   pullPolicy: Always
-  tag: "v7"
+  tag: "v8"
 service:
   type: ClusterIP
   port: 5000
