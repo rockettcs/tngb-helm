@@ -73,10 +73,10 @@ spec:
 
             # Conditional Certificate VolumeMounts
             {{- if .Values.certificates.enabled }}
-            - mountPath: /workspace/output/cert1
+            - mountPath: /workspace/output/sourceB.cer
               name: cert1-volume
               subPath: sourceB.cer
-            - mountPath: /workspace/output/cert2
+            - mountPath: /workspace/output/sourceB.pfx
               name: cert2-volume
               subPath: sourceB.pfx
             {{- end }}
