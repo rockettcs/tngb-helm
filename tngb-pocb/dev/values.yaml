@@ -9,9 +9,9 @@ certificates:
     name: cer-certificate-config
   cert2:
     name: cer-certificate-pfx
-usePVC: false
+usePVC: true
 pvc:
-  name: tngbpoc-pvc
+  name: tngb-poc3-b-pvc
 image:
   repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngb-poc3-b
   pullPolicy: Always
