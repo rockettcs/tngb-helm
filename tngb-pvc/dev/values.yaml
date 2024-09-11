@@ -1,7 +1,10 @@
 env: dev
 application:
-  name: tngbpoc1-1
+  name: tngbpoc-pvc
   javaoptions: -Xms1024m -Xmx6000m
+usePVC: true
+pvc:
+  name: tngbpoc-pvc
 replicaCount: 1
 image:
   repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngbpoc1-1
@@ -21,10 +24,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 90
   targetMemoryUtilizationPercentage: 80
 labels:
-  component: dmsbackendadapter
-  deploymentconfig: dmsbackendadapter
+  component: tngb-pvc
+  deploymentconfig: tngb-pvc
   group: tatacapital
-  project: dmsbackendadapter
+  project: tngb-pvc
   provider: s2i
   version: 1.0.0
 resources:
