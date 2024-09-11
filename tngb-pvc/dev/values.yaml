@@ -1,0 +1,39 @@
+env: dev
+application:
+  name: tngbpoc1-1
+  javaoptions: -Xms1024m -Xmx6000m
+replicaCount: 1
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/tngb-demo-project-app/tngbpoc1-1
+  pullPolicy: Always
+  tag: "v7"
+service:
+  type: ClusterIP
+  port: 5000
+route:
+  enabled: true
+  host: tngb-demo-project.apps.ocp4.imss.work
+  path: /
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 80
+labels:
+  component: dmsbackendadapter
+  deploymentconfig: dmsbackendadapter
+  group: tatacapital
+  project: dmsbackendadapter
+  provider: s2i
+  version: 1.0.0
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+nodeSelector: {}
+tolerations: []
+affinity: {}
