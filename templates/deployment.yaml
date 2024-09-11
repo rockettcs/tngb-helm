@@ -32,6 +32,14 @@ spec:
         - name: config-volume
           configMap:
             name: {{ .Values.application.name }}-{{ .Values.env }}.properties
+
+        # Conditional PVC Volume
+        {{- if .Values.usePVC }}
+        - name: app-pvc-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.name }}
+        {{- end }}
+
       containers:
         - name: {{ .Values.application.name }}
           securityContext:
@@ -42,9 +50,17 @@ spec:
             - name: tcp
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+
           volumeMounts:
             - mountPath: /workspace/output/{{ .Values.application.name }}
               name: config-volume
+
+            # Conditional PVC VolumeMount
+            {{- if .Values.usePVC }}
+            - mountPath: /app
+              name: app-pvc-volume
+            {{- end }}
+
           env:
             - name: KUBERNETES_NAMESPACE
               valueFrom:
@@ -61,6 +77,7 @@ spec:
               value: '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dlog4j2.formatMsgNoLookups=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/JocataFE_HeapDump.href'
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
